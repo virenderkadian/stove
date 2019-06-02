@@ -428,6 +428,84 @@
 	<!-- multiple divs here -->
 	<!-- multiple divs here -->
 	<!-- multiple divs here -->
+
+
+	<style>
+		    .of-carousel{
+				width: 100%;
+				margin: 0 -15px;
+				position: relative;
+				/* width: max-content; */
+				height: 140px;
+				padding: 0;
+				left: 0;
+		  	}
+			.carousel-inner{
+				position: relative;
+				width: max-content;
+				height: 100%;
+				left: 0;
+			}
+		  	.carousel-item{
+				display: inline-block;
+				height: 100px;
+				width: 500px;
+				background-color: #fff;
+				border-radius: 5px;
+				box-shadow: 0px 0px 10px 1px #777, 0px 5px 5px 0 rgba(0, 0, 0, 0.5);
+				margin: 20px;
+		  }
+		  .cover{
+			  position: absolute;
+			  height: 100%;
+			  width: 100%;
+			  top: 0;
+			  left: 0;
+			  background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.9) 2%, transparent 10%, transparent 90%, rgba(255,255,255,0.9) 95%, rgba(255,255,255,0.9));
+		  }
+		</style>
+		<div class="of-carousel" style="overflow: hidden;">
+			<div class="carousel-inner">
+				<div class="carousel-item">
+				<!-- <img class="d-block w-100" src="first.svg" alt="First slide"> -->
+					ABC
+				</div>
+				<div class="carousel-item">
+				<!-- <img class="d-block w-100" src="second.svg" alt="Second slide"> -->
+					DEF
+				</div>
+				<div class="carousel-item">
+				<!-- <img class="d-block w-100" src="third.svg" alt="Third slide"> -->
+					EFG
+				</div>
+				<div class="carousel-item">
+				<!-- <img class="d-block w-100" src="first.svg" alt="First slide"> -->
+					ABC
+				</div>
+				<div class="carousel-item">
+				<!-- <img class="d-block w-100" src="second.svg" alt="Second slide"> -->
+					DEF
+				</div>
+				<div class="carousel-item">
+				<!-- <img class="d-block w-100" src="third.svg" alt="Third slide"> -->
+					EFG
+				</div>
+			</div>
+			<div class="cover"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6" style="text-align: right;">
+				<button class="btn2" id="slide-left"><</button>
+			</div>
+			<div class="col-sm-6" style="text-align: left;">
+				<button class="btn2" id="slide-right">></button>
+			</div>
+		</div>
+	</div>
+
+
+
+
 	<div class="container">
 		<div class="row" style="margin-top: 150px;text-align: center;">
 			<div class="type" style="height:auto;">
@@ -473,7 +551,22 @@
 		
 	</div>
 
-
+	<script>
+		var count = $('.carousel-inner').children().length
+		var time=35
+		function left(){
+			$('#slide-left').off('click')
+			if(Number($('.carousel-inner')[0].style.left.slice(0, -1)) > ((1-count)*time))
+				$('.carousel-inner').animate({left: '-=35%'}, 500, function(){$('#slide-left').on('click', left)})
+		}
+		function right(){
+			$('#slide-right').off('click')
+			if(Number($('.carousel-inner')[0].style.left.slice(0, -1)) <= -5)
+				$('.carousel-inner').animate({left: '+=35%'}, 500, function(){$('#slide-right').on('click', right)})
+		}
+		$('#slide-left').on('click', left)
+		$('#slide-right').on('click', right)
+	</script>
 
 
 </body>
