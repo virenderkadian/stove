@@ -548,22 +548,26 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div style="height: 300px">
-		
-	</div>
 
 	<script>
 		var count = $('.carousel-inner').children().length
 		var time=35
+		console.log('Left threshold', ((1-count)*time))
 		function left(){
 			$('#slide-left').off('click')
-			if(Number($('.carousel-inner')[0].style.left.slice(0, -1)) > ((1-count)*time))
+			console.log('To left, got', $('.carousel-inner')[0].style.left)
+			if(Number($('.carousel-inner')[0].style.left.slice(0, -1)) > ((-count)*time))
 				$('.carousel-inner').animate({left: '-=35%'}, 500, function(){$('#slide-left').on('click', left)})
+			else
+				$('#slide-left').on('click', left)
 		}
 		function right(){
 			$('#slide-right').off('click')
+			console.log('To right, got', $('.carousel-inner')[0].style.left)
 			if(Number($('.carousel-inner')[0].style.left.slice(0, -1)) <= -5)
 				$('.carousel-inner').animate({left: '+=35%'}, 500, function(){$('#slide-right').on('click', right)})
+			else
+				$('#slide-right').on('click', right)
 		}
 		$('#slide-left').on('click', left)
 		$('#slide-right').on('click', right)
